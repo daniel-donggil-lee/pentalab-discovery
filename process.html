@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>사이트 제작 진행 가이드 · 펜타랩</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root{
+    --gold:#C9A84C; --gold-dark:#a88a36; --gold-soft:#f5efe0;
+    --black:#0a0a0a; --ink:#1a1a1a; --mid:#6b6b6b;
+    --line:#e8e8e8; --line-soft:#f2f2ee;
+    --bg:#ffffff; --bg-soft:#fafaf7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    color:var(--ink); background:var(--bg-soft);
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  .sheet{
+    max-width:860px; margin:40px auto; background:var(--bg);
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    box-shadow:0 2px 20px rgba(0,0,0,0.04);
+  }
+  .head{
+    padding:48px 56px 36px; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fff 0%,var(--bg-soft) 100%);
+    position:relative;
+  }
+  .head .bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);}
+  .logo-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-0.3px;}
+  .logo span{color:var(--gold);}
+  .doc-type{font-size:11px;letter-spacing:2px;color:var(--gold-dark);font-weight:700;text-transform:uppercase;}
+  .head h1{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1.2;margin-bottom:10px;}
+  .head .sub{color:var(--mid);font-size:15px;max-width:620px;}
+
+  .intro{padding:36px 56px;border-bottom:1px solid var(--line-soft);background:#fff;}
+  .intro p{font-size:14.5px;margin-bottom:10px;}
+  .intro p:last-child{margin-bottom:0;}
+  .intro .note{
+    margin-top:18px; padding:14px 18px;
+    background:var(--gold-soft); border-left:3px solid var(--gold);
+    border-radius:4px; font-size:13px;
+  }
+
+  .timeline{padding:20px 56px 40px;background:#fff;}
+  .stage{
+    display:grid; grid-template-columns:80px 1fr; gap:24px;
+    padding:28px 0; border-bottom:1px solid var(--line-soft); position:relative;
+  }
+  .stage:last-child{border-bottom:none;}
+  .stage-num{
+    font-family:'Pretendard'; font-size:44px; font-weight:800;
+    color:var(--gold); letter-spacing:-2px; line-height:1;
+    padding-top:4px;
+  }
+  .stage-body h2{font-size:20px;font-weight:800;letter-spacing:-0.4px;margin-bottom:4px;}
+  .stage-body .eng{font-size:11px;letter-spacing:2px;color:var(--gold-dark);font-weight:700;text-transform:uppercase;margin-bottom:12px;}
+  .stage-body .desc{font-size:14px;color:var(--ink);margin-bottom:14px;}
+
+  .row{display:grid;grid-template-columns:100px 1fr;gap:10px;margin-bottom:6px;font-size:13px;}
+  .row .k{color:var(--mid);font-weight:600;font-size:11.5px;letter-spacing:0.5px;text-transform:uppercase;padding-top:2px;}
+  .row .v{color:var(--ink);}
+  .row .v b{color:var(--black);font-weight:700;}
+
+  .tag{
+    display:inline-block; font-size:10.5px; font-weight:700;
+    padding:3px 9px; border-radius:999px; letter-spacing:0.5px;
+    margin-right:6px; margin-bottom:4px;
+  }
+  .tag.lab{background:var(--black);color:#fff;}
+  .tag.client{background:var(--gold);color:#fff;}
+  .tag.both{background:#fff;color:var(--gold-dark);border:1px solid var(--gold);}
+
+  .footer{padding:32px 56px 40px;border-top:1px solid var(--line);background:var(--bg-soft);text-align:center;}
+  .footer .legend{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+  .footer .hint{font-size:12px;color:var(--mid);}
+
+  @media(max-width:640px){
+    .head,.intro,.timeline,.footer{padding-left:24px;padding-right:24px;}
+    .stage{grid-template-columns:52px 1fr;gap:16px;}
+    .stage-num{font-size:32px;}
+    .head h1{font-size:26px;}
+    .row{grid-template-columns:1fr;gap:2px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="head">
+    <div class="bar"></div>
+    <div class="logo-row">
+      <div class="logo">PENTA<span>LAB</span></div>
+      <div class="doc-type">Process Guide · v1</div>
+    </div>
+    <h1>사이트 제작, 이런 순서로 진행됩니다</h1>
+    <p class="sub">
+      펜타캠퍼스 사이트를 만들기 위해 거치는 8단계를 한 장으로 정리했습니다.
+      각 단계마다 누가 무엇을 하고, 결과물은 무엇인지 미리 보고 가시면 편해요.
+    </p>
+  </div>
+
+  <div class="intro">
+    <p>사이트는 한 번에 완성되지 않아요. 순서대로 쌓아가는 일입니다.</p>
+    <p>건물로 치면 <b>설계도(1~3단계) → 평면도(4단계) → 인테리어 시안(5~6단계) → 실제 시공(7~8단계)</b> 순서로 진행됩니다. 각 단계의 결정이 다음 단계의 전제가 되기 때문에, 앞 단계를 건너뛰면 나중에 다시 돌아와야 해요.</p>
+    <div class="note">
+      <b>중요</b> — 이은경 대표님이 직접 결정·확인해주셔야 하는 단계는 <span class="tag client" style="font-size:10px;padding:2px 7px;">대표 확인</span> 배지로 표시했습니다. 나머지는 펜타랩이 진행한 뒤 공유드립니다.
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="stage">
+      <div class="stage-num">0</div>
+      <div class="stage-body">
+        <div class="eng">Discovery</div>
+        <h2>질문지 답변 (지금 이 단계)</h2>
+        <div class="desc">사이트를 왜 만들고, 누구를 위해, 무엇을 팔 것인지 기초 정보를 수집합니다. 이후 모든 결정의 출발점이 되는 단계예요.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag client">대표 확인</span> 이은경 대표 답변</div></div>
+        <div class="row"><div class="k">산출물</div><div class="v">답변 21개 (6블록)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">3~5일 (편하게 나눠서)</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">1</div>
+      <div class="stage-body">
+        <div class="eng">PRD · Product Requirements</div>
+        <h2>기획서 작성</h2>
+        <div class="desc">답변을 바탕으로 "이 사이트는 이런 사이트다"를 한 문서로 정리합니다. 목적·타겟·핵심기능·오픈일정·성공기준 포함.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span> <span class="tag client">대표 확인</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v"><b>PRD.md</b> (A4 5~7장 분량)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">2~3일</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">2</div>
+      <div class="stage-body">
+        <div class="eng">IA · Information Architecture</div>
+        <h2>사이트 구조 설계</h2>
+        <div class="desc">전체 페이지가 어떻게 연결되는지 지도를 그립니다. 메뉴·서브페이지·카테고리 체계를 확정해요.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v"><b>sitemap.html</b> (나무 구조 다이어그램)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">1~2일</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">3</div>
+      <div class="stage-body">
+        <div class="eng">User Flow</div>
+        <h2>사용자 여정 설계</h2>
+        <div class="desc">"방문 → 과정 둘러보기 → 결제 → 수강 시작"처럼 수강생이 거치는 경로를 화살표로 그립니다. 막히는 구간을 미리 발견하기 위해.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v"><b>flow.html</b> (핵심 시나리오 3~5개)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">1~2일</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">4</div>
+      <div class="stage-body">
+        <div class="eng">Wireframe</div>
+        <h2>화면 골격 (흑백 스케치)</h2>
+        <div class="desc">각 페이지에 어떤 요소가 어디 들어가는지 회색 박스로 배치합니다. 아직 색·이미지는 없어요. 구조만 확정하는 단계.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span> <span class="tag client">대표 확인</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v"><b>wireframe.html</b> (주요 화면 7~10장)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">3~4일</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">5</div>
+      <div class="stage-body">
+        <div class="eng">Mockup · Visual Design</div>
+        <h2>최종 디자인 시안</h2>
+        <div class="desc">Wireframe에 색·폰트·이미지·로고를 입혀 실제 사이트처럼 보이게 만듭니다. "이대로 만들면 이렇게 보입니다"를 확인하는 단계.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span> <span class="tag client">대표 확인</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v"><b>mockup.html</b> (클릭 안 되는 고화질 이미지)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">5~7일</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">6</div>
+      <div class="stage-body">
+        <div class="eng">Prototype</div>
+        <h2>클릭 가능한 시제품</h2>
+        <div class="desc">Mockup에 클릭·스크롤 동작을 붙여 브라우저에서 돌려볼 수 있게 만듭니다. 실제 데이터는 아직 가짜.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span> <span class="tag client">대표 확인</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v">스테이징 URL (대표님만 볼 수 있는 비공개 주소)</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">5~7일</div></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num">7</div>
+      <div class="stage-body">
+        <div class="eng">Development · Launch</div>
+        <h2>개발 · 연결 · 오픈</h2>
+        <div class="desc">결제(토스페이먼츠)·회원가입(Moodle)·도메인(campus.openpenta.com)·SSL을 실제로 연결하고 라이브 오픈합니다.</div>
+        <div class="row"><div class="k">누가</div><div class="v"><span class="tag lab">펜타랩 작성</span> <span class="tag client">대표 확인</span></div></div>
+        <div class="row"><div class="k">산출물</div><div class="v"><b>campus.openpenta.com</b> 공식 오픈</div></div>
+        <div class="row"><div class="k">소요</div><div class="v">3~4주</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="legend">
+      <span class="tag lab">펜타랩 작성</span>
+      <span class="tag client">대표 확인</span>
+    </div>
+    <p class="hint">
+      전체 약 <b>8~10주</b> · 2026년 10월 오픈 목표 기준 여유 있음<br/>
+      질문지 답변부터 시작하시면 됩니다 —
+      <a href="./" style="color:var(--gold-dark);font-weight:700;text-decoration:none;">질문지로 가기 →</a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
