@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>펜타캠퍼스 사이트 기획 요청서 · 펜타랩</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-dark: #a88a36;
+    --gold-soft: #f5efe0;
+    --black: #0a0a0a;
+    --ink: #1a1a1a;
+    --mid: #6b6b6b;
+    --line: #e8e8e8;
+    --line-soft: #f2f2ee;
+    --bg: #ffffff;
+    --bg-soft: #fafaf7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  .sheet {
+    max-width: 860px;
+    margin: 40px auto;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+
+  /* Header */
+  .head {
+    padding: 48px 56px 36px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+    position: relative;
+  }
+  .head .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+  .logo-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .logo { font-weight: 800; font-size: 18px; letter-spacing: -0.3px; }
+  .logo span { color: var(--gold); }
+  .doc-type { font-size: 11px; letter-spacing: 2px; color: var(--gold-dark); font-weight: 700; text-transform: uppercase; }
+
+  .head h1 { font-size: 34px; font-weight: 800; letter-spacing: -1px; line-height: 1.2; margin-bottom: 10px; }
+  .head .sub { color: var(--mid); font-size: 15px; max-width: 620px; }
+
+  .meta {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 32px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .meta .cell { padding: 14px 18px; border-right: 1px solid var(--line); background: #fff; }
+  .meta .cell:last-child { border-right: none; }
+  .meta .k { font-size: 10px; color: var(--mid); letter-spacing: 1.5px; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+  .meta .v { font-size: 13px; font-weight: 600; color: var(--ink); }
+
+  /* Intro */
+  .intro {
+    padding: 36px 56px;
+    border-bottom: 1px solid var(--line-soft);
+    background: #fff;
+  }
+  .intro p { font-size: 14.5px; color: var(--ink); margin-bottom: 10px; }
+  .intro p:last-child { margin-bottom: 0; }
+  .intro .note {
+    margin-top: 18px; padding: 14px 18px;
+    background: var(--gold-soft);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  /* Block */
+  .block { padding: 40px 56px 28px; border-bottom: 1px solid var(--line-soft); }
+  .block:last-of-type { border-bottom: none; }
+  .block-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .block-num {
+    font-size: 13px; font-weight: 700;
+    color: #fff; background: var(--black);
+    padding: 4px 10px; border-radius: 999px;
+    letter-spacing: 1px;
+  }
+  .block-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .block-desc { color: var(--mid); font-size: 13.5px; margin-bottom: 28px; margin-left: 2px; }
+
+  /* Question */
+  .q { margin-bottom: 26px; padding-left: 2px; }
+  .q:last-child { margin-bottom: 0; }
+  .q-num { font-size: 11px; font-weight: 700; color: var(--gold-dark); letter-spacing: 1px; margin-bottom: 6px; }
+  .q-text { font-size: 15.5px; font-weight: 600; color: var(--ink); margin-bottom: 12px; line-height: 1.5; }
+  .q-text em { font-style: normal; color: var(--gold-dark); }
+
+  .examples {
+    background: var(--bg-soft);
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    padding: 12px 16px 12px 18px;
+    margin-bottom: 10px;
+  }
+  .examples-label {
+    display: inline-block;
+    font-size: 10px; font-weight: 700;
+    color: var(--mid); letter-spacing: 1px;
+    margin-bottom: 6px; text-transform: uppercase;
+  }
+  .examples ul { list-style: none; padding: 0; }
+  .examples li {
+    font-size: 13px;
+    color: var(--mid);
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .examples li::before {
+    content: "";
+    position: absolute; left: 0; top: 12px;
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .answer-box {
+    margin-top: 8px;
+    width: 100%;
+    padding: 14px 16px;
+    min-height: 90px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .answer-box:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+  }
+  .answer-box::placeholder { color: #bbb; font-style: italic; }
+
+  /* Action bar */
+  .actions {
+    position: sticky; bottom: 16px;
+    max-width: 860px; margin: 16px auto 0;
+    display: flex; justify-content: center; gap: 10px;
+    z-index: 50;
+  }
+  .actions button {
+    padding: 12px 22px;
+    font-size: 13.5px; font-weight: 700;
+    border: none; border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    transition: transform .1s, box-shadow .15s;
+  }
+  .actions button:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(0,0,0,0.18); }
+  .btn-save { background: var(--gold); color: #fff; }
+  .btn-submit { background: var(--gold); color: #fff; padding: 14px 28px !important; font-size: 14.5px !important; }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .btn-download { background: #fff; color: var(--ink); border: 1px solid var(--line) !important; }
+  .btn-clear { background: #fff; color: var(--mid); border: 1px solid var(--line) !important; }
+  .save-status {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    background: var(--black); color: #fff;
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 600;
+    opacity: 0; transition: opacity .2s;
+    pointer-events: none; z-index: 60;
+  }
+  .save-status.show { opacity: 1; }
+
+  /* Footer */
+  .foot {
+    padding: 36px 56px 44px;
+    background: var(--black);
+    color: #fff;
+  }
+  .foot h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .foot p { font-size: 13.5px; color: #ccc; margin-bottom: 8px; line-height: 1.6; }
+  .foot .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 22px; }
+  .foot .step { padding: 14px; border: 1px solid #222; border-radius: 6px; }
+  .foot .step .n { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .foot .step .t { font-size: 13px; font-weight: 600; color: #fff; }
+
+  .sign {
+    margin-top: 28px; padding-top: 22px;
+    border-top: 1px solid #222;
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: #888;
+    letter-spacing: 0.5px;
+  }
+  .sign b { color: var(--gold); font-weight: 700; letter-spacing: 1px; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .sheet { margin: 0; border: none; border-radius: 0; box-shadow: none; max-width: 100%; }
+    .block { page-break-inside: avoid; }
+    .foot { page-break-before: auto; }
+    .actions, .save-status { display: none !important; }
+    .answer-box { border: 1px solid #aaa; background: #fff; }
+  }
+
+  @media (max-width: 720px) {
+    .sheet { margin: 0; border-radius: 0; border-left: none; border-right: none; }
+    .head, .intro, .block, .foot { padding-left: 24px; padding-right: 24px; }
+    .meta { grid-template-columns: repeat(2, 1fr); }
+    .meta .cell:nth-child(2) { border-right: none; }
+    .foot .steps { grid-template-columns: repeat(2, 1fr); }
+    .head h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- Header -->
+  <header class="head">
+    <div class="bar"></div>
+    <div class="logo-row">
+      <div class="logo">PENTA <span>LAB</span></div>
+      <div class="doc-type">Project Discovery Brief · v0.1</div>
+    </div>
+    <h1>펜타캠퍼스 사이트 기획 요청서</h1>
+    <p class="sub">펜타랩이 펜타캠퍼스 웹사이트 구축을 시작하기 전, 발주처의 의도·타겟·범위를 정확히 수집하기 위한 문서입니다. 답변 내용을 기준으로 기획서(PRD)·견적서·작업범위서가 작성됩니다.</p>
+
+    <div class="meta">
+      <div class="cell"><div class="k">발주처</div><div class="v">펜타캠퍼스</div></div>
+      <div class="cell"><div class="k">수주처</div><div class="v">펜타랩</div></div>
+      <div class="cell"><div class="k">응답자</div><div class="v">이은경 대표</div></div>
+      <div class="cell"><div class="k">발행일</div><div class="v">2026-04-14</div></div>
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <section class="intro">
+    <p>안녕하세요, 대표님.</p>
+    <p>펜타캠퍼스(연수원) 사이트 구축을 본격 진행하기 전에, 대표님의 생각을 정확히 전달받고 시작하고 싶습니다. 아래 6개 블록 · 총 20여 문항으로 구성되어 있으며, 각 질문 아래 예시 답변을 몇 가지씩 참고용으로 적어두었습니다.</p>
+    <p>예시는 그저 방향을 보여드리기 위함이니 얽매이지 마시고, 생각나는 대로 자유롭게 답변해주시면 됩니다. 한 번에 다 완성하실 필요 없고, 블록 단위로 나눠 주셔도 좋습니다.</p>
+    <div class="note">
+      ⓘ 답변이 회수되면 펜타랩은 이를 바탕으로 ① 기획서(PRD) ② 견적서 ③ 작업범위서를 3영업일 내 작성하여 회신드립니다.
+    </div>
+  </section>
+
+  <!-- Block 1 -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">BLOCK 01</span>
+      <h2 class="block-title">비전</h2>
+    </div>
+    <p class="block-desc">왜 이 연수원을 만들려 하시는지, 장기적으로 어디로 가고 싶으신지 여쭙는 블록입니다.</p>
+
+    <div class="q">
+      <div class="q-num">1-1</div>
+      <div class="q-text">왜 <em>연수원</em>을 만들고 싶으세요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>펜타스쿨에 공급할 강사 풀을 스스로 만들기 위해</li>
+          <li>1인 콘텐츠 의존에서 벗어나 시스템으로 굴러가게 하려고</li>
+          <li>수익 다각화 — 학원비 외 연수료 매출 라인 추가</li>
+          <li>후배 교사들에게 실전 문해력 교육 노하우를 정식으로 전하고 싶어서</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-1-1" data-q="1-1" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">1-2</div>
+      <div class="q-text">10년 뒤 펜타캠퍼스가 어떤 모습이면 <em>성공</em>이라고 느끼실까요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>누적 수료생 1만 명, 전국 200개 가맹학원에 수료생이 들어가 있는 모습</li>
+          <li>"문해력 강사 자격증은 펜타"라는 인식이 업계 표준이 된 모습</li>
+          <li>교육청 위탁연수까지 운영하는 종합 교원연수원으로 확장</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-1-2" data-q="1-2" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">1-3</div>
+      <div class="q-text">만약 6개월 안에 연수원이 없어진다면 가장 <em>아쉬운 것</em>은 무엇일까요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>예비 강사들을 배출할 통로가 사라지는 것</li>
+          <li>펜타스쿨 가맹 확장이 1인 강사 의존에서 못 벗어나는 것</li>
+          <li>교재로만 전달하던 교육관을 강의로 전할 기회 상실</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-1-3" data-q="1-3" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+  </section>
+
+  <!-- Block 2 -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">BLOCK 02</span>
+      <h2 class="block-title">타겟 수강생</h2>
+    </div>
+    <p class="block-desc">이 연수를 듣게 될 사람은 누구인지, 그들이 어떤 상태에 있는지 파악합니다.</p>
+
+    <div class="q">
+      <div class="q-num">2-1</div>
+      <div class="q-text">수강생은 누구인가요? (<em>1순위 / 2순위 / 3순위</em> 나눠서)</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>1순위: 30~40대 경력단절 여성, 교직·독서지도 경험자 / 2순위: 현직 초등교사 / 3순위: 문해력 학원 가맹 희망 원장</li>
+          <li>1순위: 엄마표 교육에 익숙한 학부모 / 2순위: 대학원 교육학과 재학생 / 3순위: 공교육 은퇴 교사</li>
+          <li>1순위: 펜타스쿨 가맹 예정자 / 2순위: 독서논술 학원 강사 / 3순위: 방과후 강사 지원자</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-2-1" data-q="2-1" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">2-2</div>
+      <div class="q-text">그분들이 지금 겪고 있는 <em>문제·고민</em>은 무엇일까요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>자격증을 따도 정작 취업할 곳이 없다</li>
+          <li>아이스크림·티처빌 연수는 많지만 '문해력 지도'를 실전까지 가르쳐주는 곳은 없다</li>
+          <li>공부한 내용을 내 아이에게만 쓰고 끝나는 게 아쉽다</li>
+          <li>학원 차리고 싶은데 커리큘럼·노하우가 없다</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-2-2" data-q="2-2" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">2-3</div>
+      <div class="q-text">그분들이 <em>지금</em>은 어디서 연수를 듣고 있나요? (대체재)</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>아이스크림 원격교육연수원 · 티처빌</li>
+          <li>교대·사대 부설 평생교육원</li>
+          <li>유튜브 무료 강의 + 단행본 독학</li>
+          <li>슬기로운초등생활 유튜브 구독, 책 구입으로 대체</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-2-3" data-q="2-3" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+  </section>
+
+  <!-- Block 3 -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">BLOCK 03</span>
+      <h2 class="block-title">5개 자격증 과정</h2>
+    </div>
+    <p class="block-desc">사이트의 핵심 상품입니다. 이 블록의 답이 확정되어야 과정 상세 페이지·카드·가격이 만들어집니다.</p>
+
+    <div class="q">
+      <div class="q-num">3-1</div>
+      <div class="q-text">5개 과정을 <em>생각나시는 대로</em> 알려주세요. (과정명 / 주제 / 담당 강사)</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변 (형식 참고용)</div>
+        <ul>
+          <li>① 초등 문해력 지도사 / 초등 독해 전반 / 이은경 대표</li>
+          <li>② 논증과추론 지도사 / 비판적 사고 · 논술 / 김문영 강사</li>
+          <li>③ 인문독서 지도사 / 고전 · 인문 독서 지도 / 미정</li>
+          <li>④ 어휘·개념어 지도사 / 사고도구어 체계화 / 미정</li>
+          <li>⑤ 하브루타 토론 지도사 / 질문·토론 수업 설계 / 미정</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-3-1" data-q="3-1" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">3-2</div>
+      <div class="q-text">왜 <em>이 5개</em>인가요? (다른 주제들 제쳐두고 이것을 고르신 이유)</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>펜타스쿨 기본 커리큘럼을 가르칠 수 있는 최소 단위라서</li>
+          <li>내가 직접 15년간 검증해본 과목들이라서</li>
+          <li>시장에서 강사 수요가 확실한 영역이라서</li>
+          <li>PENTA 5영역 브랜드와 맞추기 위해서</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-3-2" data-q="3-2" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">3-3</div>
+      <div class="q-text">PENTA 5영역(독해·어휘·사고·표현·소통)과 5과정은 <em>어떻게 연결</em>되나요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변 (택 1)</div>
+        <ul>
+          <li>① 5영역 = 5과정 1:1 매핑 (독해지도사 / 어휘지도사 / 사고지도사 / 표현지도사 / 소통지도사)</li>
+          <li>② 영역과 무관한 별도 커리큘럼 (강사진·주제 중심)</li>
+          <li>③ 하이브리드 — 2~3개는 영역 기반, 나머지는 심화 주제</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-3-3" data-q="3-3" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">3-4</div>
+      <div class="q-text">수강료는 <em>얼마 정도</em> 생각하세요? (과정당 / 5과정 묶음)</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>과정당 30만 원 / 5과정 묶음 120만 원 (진입장벽 낮춤)</li>
+          <li>과정당 50만 원 / 5과정 묶음 200만 원 (중가 포지션)</li>
+          <li>과정당 80만 원 / 5과정 묶음 300만 원 + 가맹 우선권 (프리미엄)</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-3-4" data-q="3-4" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+  </section>
+
+  <!-- Block 4 -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">BLOCK 04</span>
+      <h2 class="block-title">성공 기준</h2>
+    </div>
+    <p class="block-desc">"잘 되고 있다"를 무엇으로 판단하실지 구체적 숫자·상태로 정의해주세요.</p>
+
+    <div class="q">
+      <div class="q-num">4-1</div>
+      <div class="q-text">오픈 3·6·12개월 후, <em>수강생 몇 명</em>이면 성공이라 느끼실까요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>3개월 30명 / 6개월 100명 / 1년 300명</li>
+          <li>3개월 10명 / 6개월 50명 / 1년 200명 (천천히 검증)</li>
+          <li>3개월 100명 / 6개월 500명 / 1년 2,000명 (공격적 목표)</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-4-1" data-q="4-1" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">4-2</div>
+      <div class="q-text">오픈 1년 뒤 <em>매출</em>이 얼마면 만족스러우실까요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>연 1억 원 (월 평균 800만)</li>
+          <li>연 3억 원 (수강생 평균 150명 × 200만)</li>
+          <li>매출은 부차적, 수료생 품질이 더 중요</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-4-2" data-q="4-2" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">4-3</div>
+      <div class="q-text">수료생 중 <em>몇 명이 실제 취업</em>하면 성공이라 부를 수 있을까요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>1년 내 10명 이상이 펜타스쿨·가맹점에 들어가면 성공</li>
+          <li>수료생의 30% 이상이 어떤 형태로든 현장에서 활동</li>
+          <li>취업은 후순위, 자기계발 완료도 의미 있음</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-4-3" data-q="4-3" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">4-4</div>
+      <div class="q-text">숫자 말고, <em>개인적으로</em> "이 정도면 만족"이라고 느낄 모습은?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>월 1회 라이브 특강이 매번 꽉 찬다</li>
+          <li>수료생이 자기 아이 변화 사례를 후기로 써준다</li>
+          <li>강사 섭외 문의가 학교·학원에서 먼저 들어온다</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-4-4" data-q="4-4" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+  </section>
+
+  <!-- Block 5 -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">BLOCK 05</span>
+      <h2 class="block-title">하지 않을 것 (Non-goals)</h2>
+    </div>
+    <p class="block-desc">경계를 명확히 하기 위한 블록입니다. 이게 확정되어야 사이트가 무한히 커지지 않습니다.</p>
+
+    <div class="q">
+      <div class="q-num">5-1</div>
+      <div class="q-text">절대 <em>하고 싶지 않은 것</em>은 무엇인가요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>교육청·학교 단체 위탁연수 (영업 복잡, 대금 늦음)</li>
+          <li>학점은행제 학위 과정 (법규 부담)</li>
+          <li>오프라인 집체 연수 (물리적 운영 부담)</li>
+          <li>내 얼굴이 전면에 나오는 개인 브랜드화 (피로)</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-5-1" data-q="5-1" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">5-2</div>
+      <div class="q-text">아이스크림 연수원에서 하는 것 중 <em>펜타는 빼고 싶은 것</em>이 있으세요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변 (복수 선택 가능)</div>
+        <ul>
+          <li>연수 회원권(구독제) · 포인트·쿠폰 시스템</li>
+          <li>교재 판매 · 교구 패키지</li>
+          <li>쌤클래스(라이브+콘텐츠+소셜) 복잡 구조</li>
+          <li>쇼츠연수(짧은 영상 연수)</li>
+          <li>학교 위탁연수 · 단체 예산 견적</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-5-2" data-q="5-2" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">5-3</div>
+      <div class="q-text">초기 3년간은 <em>절대 손대지 않을 것</em>은?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>해외 진출 · 영어 버전</li>
+          <li>중·고등 교사 대상 확장</li>
+          <li>학부모 대상 상품</li>
+          <li>오프라인 스쿨 운영</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-5-3" data-q="5-3" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+  </section>
+
+  <!-- Block 6 -->
+  <section class="block">
+    <div class="block-head">
+      <span class="block-num">BLOCK 06</span>
+      <h2 class="block-title">현실 제약</h2>
+    </div>
+    <p class="block-desc">예산·시간·법률 등 이번 프로젝트에 걸려 있는 현실 조건을 확인합니다.</p>
+
+    <div class="q">
+      <div class="q-num">6-1</div>
+      <div class="q-text"><em>예산</em> 제약이 있나요? (마케팅·개발 투자 가능 범위)</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>초기 투자 1,000만 원 이내 (첫 매출로 순환)</li>
+          <li>3,000만 원까지 가능, 그 이상은 대출·투자 필요</li>
+          <li>광고비는 월 100만 원 내외로만</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-6-1" data-q="6-1" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">6-2</div>
+      <div class="q-text">대표님이 주당 <em>몇 시간</em>까지 펜타캠퍼스에 쓸 수 있으세요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>주당 10시간 이내 (타 업무 병행)</li>
+          <li>주당 20시간 (오전 전담)</li>
+          <li>콘텐츠 제작 집중 기간엔 주 30시간까지 가능</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-6-2" data-q="6-2" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">6-3</div>
+      <div class="q-text">지금 <em>걸림돌</em>이라고 느끼는 건 뭔가요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>평생교육원 인가 서류 진행 지연</li>
+          <li>강사 섭외가 제일 막막함</li>
+          <li>콘텐츠 제작 시간이 부족</li>
+          <li>운영·결제·CS 시스템 전무</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-6-3" data-q="6-3" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+
+    <div class="q">
+      <div class="q-num">6-4</div>
+      <div class="q-text">개인 생활에서 꼭 <em>지키고 싶은 선</em>이 있으세요?</div>
+      <div class="examples">
+        <div class="examples-label">예시 답변</div>
+        <ul>
+          <li>주말은 절대 업무 금지</li>
+          <li>저녁 9시 이후 카톡·메일 확인 안 함</li>
+          <li>가족 여행·자녀 돌봄이 1순위</li>
+        </ul>
+      </div>
+      <textarea class="answer-box" id="ans-6-4" data-q="6-4" placeholder="여기에 답변을 적어주세요. 예시에 얽매이지 마시고 생각나는 대로 자유롭게 써주세요."></textarea>
+    </div>
+  </section>
+
+  <!-- Footer / Next -->
+  <footer class="foot">
+    <h3>답변 이후 진행 절차</h3>
+    <p>본 요청서 답변 회수 시점부터 펜타랩은 아래 4단계 산출물을 순차 제작해 회신드립니다. 각 단계 완료 시 대표님 승인을 받아 다음 단계로 진행합니다.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="n">STEP 1</div>
+        <div class="t">기획서 (PRD)</div>
+      </div>
+      <div class="step">
+        <div class="n">STEP 2</div>
+        <div class="t">견적서 · 작업범위서</div>
+      </div>
+      <div class="step">
+        <div class="n">STEP 3</div>
+        <div class="t">사이트 구조 · 화면 설계</div>
+      </div>
+      <div class="step">
+        <div class="n">STEP 4</div>
+        <div class="t">디자인 · 개발 · 오픈</div>
+      </div>
+    </div>
+
+    <div class="sign">
+      <div>발행 · <b>PENTA LAB</b> · Project Discovery Team</div>
+      <div>v0.1 · 2026-04-14</div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Action bar -->
+<div class="actions">
+  <button class="btn-clear" onclick="clearAll()">전체 지우기</button>
+  <button class="btn-download" onclick="downloadAnswers()">.txt 내려받기</button>
+  <button class="btn-submit" onclick="submitAnswers()" id="submitBtn">답변 제출하기</button>
+</div>
+<div class="save-status" id="saveStatus">저장되었습니다</div>
+
+<script>
+const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzyaB2zkLrcy3PsHMnTj3GLJSy-dYuMeFWtwiwZJeZmuymEPl50oJzTNvTYsJGu4zXt/exec';
+const STORAGE_KEY = 'pentalab_discovery_v1';
+const textareas = document.querySelectorAll('textarea.answer-box');
+
+try {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  textareas.forEach(t => { if (saved[t.dataset.q]) t.value = saved[t.dataset.q]; });
+} catch(e) {}
+
+let timer;
+textareas.forEach(t => t.addEventListener('input', () => {
+  clearTimeout(timer);
+  timer = setTimeout(() => saveNow(true), 600);
+}));
+
+function saveNow(showToast) {
+  const data = {};
+  textareas.forEach(t => { data[t.dataset.q] = t.value; });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  if (showToast !== false) {
+    const s = document.getElementById('saveStatus');
+    s.textContent = '저장되었습니다 · ' + new Date().toLocaleTimeString('ko-KR');
+    s.classList.add('show');
+    setTimeout(() => s.classList.remove('show'), 1500);
+  }
+}
+
+function downloadAnswers() {
+  saveNow(false);
+  const blocks = {'1':'비전','2':'타겟 수강생','3':'5개 자격증 과정','4':'성공 기준','5':'하지 않을 것','6':'현실 제약'};
+  const qlabels = {};
+  document.querySelectorAll('.q').forEach(q => {
+    qlabels[q.querySelector('.q-num').textContent.trim()] = q.querySelector('.q-text').textContent.trim();
+  });
+
+  let out = '펜타캠퍼스 사이트 기획 요청서 — 응답\n';
+  out += '응답자: 이은경 대표\n';
+  out += '작성일: ' + new Date().toLocaleString('ko-KR') + '\n';
+  out += '='.repeat(60) + '\n\n';
+
+  for (const bnum of ['1','2','3','4','5','6']) {
+    out += `[블록 ${bnum.padStart(2,'0')}. ${blocks[bnum]}]\n`;
+    out += '-'.repeat(60) + '\n';
+    textareas.forEach(t => {
+      if (t.dataset.q.startsWith(bnum + '-')) {
+        out += `\nQ ${t.dataset.q}. ${qlabels[t.dataset.q] || ''}\n`;
+        out += (t.value.trim() || '(답변 없음)') + '\n';
+      }
+    });
+    out += '\n';
+  }
+
+  const blob = new Blob([out], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `펜타캠퍼스_Discovery_답변_${new Date().toISOString().slice(0,10)}.txt`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+function clearAll() {
+  if (!confirm('모든 답변을 지울까요? 되돌릴 수 없습니다.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  textareas.forEach(t => t.value = '');
+}
+
+async function submitAnswers() {
+  saveNow(false);
+  const answers = {};
+  let filled = 0;
+  textareas.forEach(t => {
+    answers[t.dataset.q] = t.value.trim();
+    if (t.value.trim()) filled++;
+  });
+  const total = textareas.length;
+
+  if (filled === 0) {
+    alert('답변이 비어 있습니다. 한 문항 이상 작성해주세요.');
+    return;
+  }
+  if (filled < total) {
+    if (!confirm(`${filled}/${total}문항 작성하셨습니다. 이대로 제출할까요?\n(이후 같은 페이지에서 추가 작성 후 다시 제출도 가능합니다.)`)) return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '전송 중...';
+
+  try {
+    await fetch(SUBMIT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify({
+        respondent: '이은경 대표',
+        answers: answers,
+        submittedAt: new Date().toISOString()
+      })
+    });
+    const s = document.getElementById('saveStatus');
+    s.textContent = '✓ 펜타랩에 정상 전송되었습니다';
+    s.classList.add('show');
+    setTimeout(() => s.classList.remove('show'), 3500);
+    btn.textContent = '✓ 제출 완료';
+    setTimeout(() => { btn.disabled = false; btn.textContent = original; }, 3500);
+  } catch (err) {
+    alert('전송에 실패했습니다. 잠시 후 다시 시도하시거나 .txt 내려받기로 수동 전송해주세요.\n\n오류: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+}
+</script>
+
+</body>
+</html>
