@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>펜타캠퍼스 — 가르치는 사람의 문해력</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
+<style>
+:root{
+  --gold:#C9A84C;
+  --gold-deep:#b08f33;
+  --ink:#0a0a0a;
+  --sub:#6b6b6b;
+  --line:#e8e8e8;
+  --bg:#ffffff;
+  --soft:#faf8f2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+.brand-mark{width:28px;height:28px;background:var(--ink);color:var(--gold);display:grid;place-items:center;border-radius:6px;font-weight:800;font-size:14px}
+.nav-menu{display:flex;gap:28px;font-size:14px;color:var(--sub);font-weight:500}
+.nav-menu a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;border-radius:999px;font-weight:700;font-size:14px;transition:all .15s;cursor:pointer;border:0}
+.btn-primary{background:var(--gold);color:#fff}
+.btn-primary:hover{background:var(--gold-deep)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-disabled{background:#f2f2f2;color:#a0a0a0;cursor:not-allowed}
+
+/* HERO */
+.hero{padding:96px 0 88px;background:linear-gradient(180deg,#fff 0%,var(--soft) 100%);border-bottom:1px solid var(--line)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--gold);border-radius:999px;font-size:12px;color:var(--gold-deep);font-weight:700;margin-bottom:24px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:56px;line-height:1.15;letter-spacing:-.025em;font-weight:800;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--gold-deep);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:8px;text-decoration-thickness:3px}
+.hero p{font-size:18px;color:var(--sub);max-width:620px;margin-bottom:36px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.countdown{display:flex;gap:18px;margin-top:56px;padding:20px 28px;background:#fff;border:1px solid var(--line);border-radius:14px;max-width:540px}
+.countdown .label{font-size:12px;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.countdown .cd-item{display:flex;flex-direction:column;align-items:center;min-width:64px}
+.countdown .cd-item b{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.countdown .cd-item span{font-size:11px;color:var(--sub);margin-top:2px}
+.countdown .cd-divider{width:1px;background:var(--line)}
+.countdown .cd-lead{flex:1;display:flex;flex-direction:column;justify-content:center}
+.countdown .cd-lead b{font-size:14px;font-weight:700;color:var(--ink);margin-top:2px}
+
+/* SECTIONS */
+.section{padding:100px 0;border-bottom:1px solid var(--line)}
+.section.alt{background:var(--soft)}
+.eyebrow{font-size:12px;font-weight:800;color:var(--gold-deep);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+h2.section-title{font-size:40px;line-height:1.2;letter-spacing:-.02em;font-weight:800;margin-bottom:18px}
+.section-sub{font-size:17px;color:var(--sub);max-width:640px;margin-bottom:56px}
+
+/* WHY - 3 cards */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 28px;transition:all .2s}
+.why-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.why-num{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--gold);display:grid;place-items:center;font-weight:800;margin-bottom:20px;font-size:14px}
+.why-card h3{font-size:19px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.why-card p{font-size:14px;color:var(--sub);line-height:1.65}
+
+/* COURSES */
+.course-gateway{background:#fff;border:2px solid var(--gold);border-radius:20px;padding:36px 32px;margin-bottom:20px;position:relative;overflow:hidden}
+.course-gateway::before{content:"가장 먼저";position:absolute;top:20px;right:24px;background:var(--gold);color:#fff;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em}
+.course-gateway .badge{display:inline-block;background:var(--ink);color:var(--gold);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:800;letter-spacing:.05em;margin-bottom:14px}
+.course-gateway h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.course-gateway p{font-size:15px;color:var(--sub);margin-bottom:20px;max-width:560px}
+.course-gateway .meta{display:flex;gap:18px;font-size:13px;color:var(--sub);align-items:center}
+.course-gateway .price{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.course-gateway .meta .dot{width:3px;height:3px;border-radius:50%;background:#ccc}
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.course-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;transition:all .15s}
+.course-card:hover{border-color:var(--ink)}
+.course-card .tag{font-size:11px;color:var(--sub);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.course-card h4{font-size:16px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;line-height:1.35}
+.course-card .meta{font-size:12px;color:var(--sub);margin-bottom:14px}
+.course-card .price{font-size:16px;font-weight:800;color:var(--ink)}
+
+/* MASTER */
+.master{background:var(--ink);color:#fff;border-radius:24px;padding:56px 48px;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+.master .eyebrow{color:var(--gold)}
+.master h2{color:#fff;font-size:36px;margin-bottom:14px;letter-spacing:-.02em}
+.master p{color:#c5c5c5;font-size:16px;margin-bottom:28px;line-height:1.65}
+.master ul{list-style:none;margin-bottom:28px}
+.master li{padding:10px 0;border-top:1px solid #2a2a2a;display:flex;align-items:center;gap:12px;font-size:14px}
+.master li::before{content:"✓";color:var(--gold);font-weight:800}
+.master-price{background:#111;border:1px solid #2a2a2a;border-radius:16px;padding:32px}
+.master-price .strike{font-size:14px;color:#888;text-decoration:line-through}
+.master-price .disc{color:var(--gold);font-weight:800;font-size:13px;margin-left:8px}
+.master-price .now{font-size:44px;font-weight:800;letter-spacing:-.025em;margin:6px 0 4px;color:#fff}
+.master-price .sub{font-size:12px;color:#888;margin-bottom:22px}
+
+/* INSTRUCTORS */
+.inst-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.inst-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:all .15s}
+.inst-card:hover{border-color:var(--ink)}
+.inst-photo{aspect-ratio:1;background:linear-gradient(135deg,#f5efe0 0%,#ede3c6 100%);display:grid;place-items:center;font-size:44px;color:var(--gold-deep);font-weight:800}
+.inst-body{padding:18px 20px}
+.inst-body h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.inst-body .role{font-size:12px;color:var(--gold-deep);font-weight:700;margin-bottom:6px}
+.inst-body p{font-size:12px;color:var(--sub);line-height:1.5}
+.inst-card.empty .inst-photo{background:#f5f5f5;color:#bbb;font-size:14px;font-weight:600}
+
+/* PERSONA */
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.persona-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 26px;position:relative}
+.persona-card::before{content:"“";position:absolute;top:18px;right:24px;font-size:64px;color:var(--gold);font-family:Georgia,serif;line-height:.8;opacity:.3}
+.persona-card .tag{font-size:11px;color:var(--gold-deep);font-weight:800;letter-spacing:.08em;margin-bottom:12px;text-transform:uppercase}
+.persona-card h4{font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em}
+.persona-card blockquote{font-size:14px;color:var(--sub);line-height:1.7;font-style:italic}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+details.faq{border-bottom:1px solid var(--line);padding:18px 0;cursor:pointer}
+details.faq:first-child{border-top:1px solid var(--line)}
+details.faq summary{font-size:16px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--gold);font-size:22px;font-weight:400}
+details.faq[open] summary::after{content:"−"}
+details.faq p{font-size:14px;color:var(--sub);line-height:1.65;margin-top:12px}
+
+.signup{background:var(--ink);color:#fff;border-radius:20px;padding:36px 32px;position:sticky;top:96px}
+.signup h3{font-size:22px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.signup p{font-size:13px;color:#aaa;margin-bottom:22px}
+.signup .field{margin-bottom:12px}
+.signup input{width:100%;background:#111;border:1px solid #2a2a2a;color:#fff;padding:14px 16px;border-radius:10px;font-size:14px;font-family:inherit}
+.signup input::placeholder{color:#666}
+.signup input:focus{outline:none;border-color:var(--gold)}
+.signup .btn{width:100%;margin-top:4px}
+.signup .note{font-size:11px;color:#777;margin-top:12px;text-align:center}
+
+/* FOOTER */
+footer{padding:56px 0 40px;background:#fafafa;border-top:1px solid var(--line);font-size:13px;color:var(--sub)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-grid h5{font-size:13px;color:var(--ink);font-weight:700;margin-bottom:14px}
+.foot-grid a{display:block;padding:4px 0}
+.foot-grid a:hover{color:var(--ink)}
+.foot-bottom{padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:12px;color:#999}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:36px}
+  .hero p{font-size:16px}
+  h2.section-title{font-size:28px}
+  .section{padding:64px 0}
+  .why-grid,.course-grid,.persona-grid,.inst-grid{grid-template-columns:1fr}
+  .inst-grid{grid-template-columns:1fr 1fr}
+  .master{grid-template-columns:1fr;padding:36px 28px}
+  .faq-wrap{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .nav-menu{display:none}
+  .countdown{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-mark">P</div>
+      <span>펜타캠퍼스</span>
+    </div>
+    <div class="nav-menu">
+      <a>6과정</a>
+      <a>마스터 번들</a>
+      <a>강사진</a>
+      <a>연수원 소개</a>
+      <a>FAQ</a>
+    </div>
+    <a class="btn btn-primary">사전등록</a>
+  </div>
+</nav>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span>2026.10 정식 오픈 · 사전등록 진행 중</div>
+    <h1>가르치는 사람의 문해력.<br/>그리고 <em>취업으로 이어지는 길</em>.</h1>
+    <p>펜타캠퍼스는 강사·원장·예비강사를 위한 부설 평생교육원입니다. 6개 자격증 과정으로 표준 커리큘럼을 익히고, 펜타스쿨·가맹·학교 단체연수로 연결됩니다.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary">사전등록하고 오픈 알림받기</a>
+      <a class="btn btn-ghost">6과정 둘러보기</a>
+    </div>
+    <div class="countdown">
+      <div class="cd-lead">
+        <div class="label">정식 오픈까지</div>
+        <b>2026.10.01</b>
+      </div>
+      <div class="cd-divider"></div>
+      <div class="cd-item"><b>168</b><span>DAYS</span></div>
+      <div class="cd-item"><b>12</b><span>HOURS</span></div>
+      <div class="cd-item"><b>34</b><span>MIN</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WHY -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Why PENTA Campus</div>
+    <h2 class="section-title">왜 펜타캠퍼스인가</h2>
+    <p class="section-sub">강의력 좋은 연수원은 많습니다. 저희는 수강 이후를 설계합니다.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>평생교육원 정식 인가</h3>
+        <p>교육부 평생교육법에 따른 부설 평생교육원으로, 수료자에게 공인 자격증을 발급합니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>현장에서 가르치는 커리큘럼</h3>
+        <p>펜타스쿨 현장 강사진이 직접 설계한 6과정. 바로 교실에서 쓸 수 있는 표준 커리를 전수합니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>취업까지 이어지는 길</h3>
+        <p>펜타스쿨 직영·가맹·학교 단체연수 3개 경로로 연결합니다. 수료가 아니라 <strong>취업</strong>이 목표입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. COURSES -->
+<section class="section alt">
+  <div class="container">
+    <div class="eyebrow">6 Courses</div>
+    <h2 class="section-title">6개 자격증 과정</h2>
+    <p class="section-sub">초등 종합문해력 1과정(기본) + 심화 5과정으로 구성됩니다.</p>
+
+    <div class="course-gateway">
+      <div class="badge">GATEWAY · 게이트웨이</div>
+      <h3>초등 종합문해력 전문가과정</h3>
+      <p>모든 신규 수강생의 진입로. 펜타스쿨의 표준 커리큘럼을 그대로 익히며, 이 과정을 기반으로 심화 5과정이 확장됩니다.</p>
+      <div class="meta">
+        <span>16차시 · 2학점 (가안)</span>
+        <span class="dot"></span>
+        <span class="price">200,000원</span>
+        <span class="dot"></span>
+        <span>오픈 예정</span>
+      </div>
+    </div>
+
+    <div class="course-grid">
+      <div class="course-card"><div class="tag">심화 · 02</div><h4>인문독서지도 전문가과정</h4><div class="meta">16차시 · 2학점 (가안)</div><div class="price">300,000원~</div></div>
+      <div class="course-card"><div class="tag">심화 · 03</div><h4>논증과추론 전문가과정</h4><div class="meta">16차시 · 2학점 (가안)</div><div class="price">300,000원~</div></div>
+      <div class="course-card"><div class="tag">심화 · 04</div><h4>근거기반토론 전문가과정</h4><div class="meta">16차시 · 2학점 (가안)</div><div class="price">300,000원~</div></div>
+      <div class="course-card"><div class="tag">심화 · 05</div><h4>시사분석훈련 전문가과정</h4><div class="meta">16차시 · 2학점 (가안)</div><div class="price">300,000원~</div></div>
+      <div class="course-card"><div class="tag">심화 · 06</div><h4>요약구조화 전문가과정</h4><div class="meta">16차시 · 2학점 (가안)</div><div class="price">300,000원~</div></div>
+      <div class="course-card" style="background:var(--soft);border-style:dashed"><div class="tag" style="color:var(--gold-deep)">MASTER</div><h4>6과정 마스터 번들</h4><div class="meta">6과정 통합 · 가맹 우선권</div><div class="price">1,200,000원</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MASTER -->
+<section class="section">
+  <div class="container">
+    <div class="master">
+      <div>
+        <div class="eyebrow">Master Bundle</div>
+        <h2>6과정을 모두 이수하면<br/>마스터 자격과 가맹 우선권이 따라옵니다.</h2>
+        <p>개별 수강 대비 30% 할인. 수료 시 펜타스쿨 가맹 심사 우선권과 직영 강사 채용 1순위 검토 대상이 됩니다.</p>
+        <ul>
+          <li>6개 자격증 + 마스터 인증서</li>
+          <li>펜타스쿨 가맹 심사 우선권</li>
+          <li>직영·가맹 강사 채용 1순위 검토</li>
+          <li>학교 단체연수 강사 풀 우선 등록</li>
+        </ul>
+        <a class="btn btn-primary">마스터 번들 자세히 보기</a>
+      </div>
+      <div class="master-price">
+        <div><span class="strike">정가 1,700,000원</span><span class="disc">30% OFF</span></div>
+        <div class="now">1,200,000<span style="font-size:18px;font-weight:700">원</span></div>
+        <div class="sub">6과정 통합 / 가격 가안 · 5월 초 확정</div>
+        <a class="btn btn-ghost" style="width:100%;border-color:#2a2a2a;color:#fff">사전등록하기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. INSTRUCTORS -->
+<section class="section alt">
+  <div class="container">
+    <div class="eyebrow">Instructors</div>
+    <h2 class="section-title">현장에서 가르치는 사람이 가르칩니다</h2>
+    <p class="section-sub">펜타스쿨을 직접 운영하고 학부모·아이와 매일 호흡하는 강사진이 직접 수업합니다.</p>
+    <div class="inst-grid">
+      <div class="inst-card">
+        <div class="inst-photo">이</div>
+        <div class="inst-body">
+          <h4>이은경 대표</h4>
+          <div class="role">총괄 · 초등 종합문해력</div>
+          <p>초등교사 15년 · 베스트셀러 작가 · 유튜브 15만 구독</p>
+        </div>
+      </div>
+      <div class="inst-card empty">
+        <div class="inst-photo">확정 중</div>
+        <div class="inst-body">
+          <h4>심화 과정 강사</h4>
+          <div class="role">인문독서지도</div>
+          <p>5월 초 확정 예정</p>
+        </div>
+      </div>
+      <div class="inst-card empty">
+        <div class="inst-photo">확정 중</div>
+        <div class="inst-body">
+          <h4>심화 과정 강사</h4>
+          <div class="role">논증과추론</div>
+          <p>5월 초 확정 예정</p>
+        </div>
+      </div>
+      <div class="inst-card empty">
+        <div class="inst-photo">+3</div>
+        <div class="inst-body">
+          <h4>심화 과정 강사</h4>
+          <div class="role">토론·시사·요약구조화</div>
+          <p>순차 공개</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. PERSONA -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Who it's for</div>
+    <h2 class="section-title">누가 펜타캠퍼스를 듣나요</h2>
+    <p class="section-sub">세 분의 수강생을 가정하고 커리큘럼을 설계했습니다.</p>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="tag">#01 현직 강사·원장</div>
+        <h4>소규모 공부방·국어논술 학원 운영자</h4>
+        <blockquote>"커리큘럼 표준화가 안 되어 있어요. 첨삭·상담·분석에 시간이 너무 많이 들어가요. 구조 잡힌 커리가 필요해요."</blockquote>
+      </div>
+      <div class="persona-card">
+        <div class="tag">#02 재취업 준비</div>
+        <h4>아이를 키운 뒤 다시 일하고 싶은 엄마</h4>
+        <blockquote>"영어·수학은 자신 없지만, 국어는 배워서 가르쳐보고 싶어요. 단계적으로 배울 수 있으면 좋겠어요."</blockquote>
+      </div>
+      <div class="persona-card">
+        <div class="tag">#03 학교 담당자</div>
+        <h4>사립·공립학교 단체연수 의뢰자</h4>
+        <blockquote>"강사진 이력과 인가 여부, 실제 진행 사례가 확인되면 단체연수를 진행하고 싶습니다."</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ + SIGNUP -->
+<section class="section alt" id="preregister">
+  <div class="container">
+    <div class="faq-wrap">
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <p class="section-sub">더 궁금한 건 사전등록 후 안내 메일로 받아보실 수 있습니다.</p>
+        <details class="faq" open><summary>인가 상태는 어떻게 되나요?</summary><p>교육부 평생교육법에 따른 부설 평생교육원 인가를 진행 중이며, 2026년 10월 정식 오픈 전 완료 예정입니다. 인가번호는 확정 즉시 사이트·수료증에 반영됩니다.</p></details>
+        <details class="faq"><summary>수강료는 얼마인가요?</summary><p>초등 종합문해력(게이트웨이)은 20만 원, 심화 5과정은 각 30만 원 이상입니다. 6과정 통합 마스터 번들은 120만 원(정가 170만 원 대비 30% 할인) 가안으로, 5월 초 최종 확정됩니다.</p></details>
+        <details class="faq"><summary>수강 일정은 언제 공개되나요?</summary><p>정식 오픈은 2026년 10월이며, 7~9월 중 결제·수강등록이 가능해집니다. 사전등록하시면 오픈 즉시 우선 안내와 얼리버드 혜택을 받아보실 수 있습니다.</p></details>
+        <details class="faq"><summary>취업 연결은 어떻게 이루어지나요?</summary><p>수료 후 펜타스쿨 직영·가맹·학교 단체연수 세 경로로 연결됩니다. 마스터 번들 수료자는 가맹 심사 우선권과 직영 강사 채용 1순위 검토 대상이 됩니다.</p></details>
+        <details class="faq"><summary>단체연수(B2B) 문의는 어디로 하나요?</summary><p>사립·공립학교 단체연수 문의는 푸터의 연락처로 주시면 담당자가 직접 회신드립니다. 2년차부터 별도 문의 페이지를 오픈할 예정입니다.</p></details>
+      </div>
+      <div class="signup">
+        <h3>지금 사전등록하세요</h3>
+        <p>10월 정식 오픈 시 얼리버드 혜택을 드립니다.</p>
+        <div class="field"><input type="text" placeholder="성함"/></div>
+        <div class="field"><input type="email" placeholder="이메일"/></div>
+        <div class="field"><input type="tel" placeholder="연락처 (선택)"/></div>
+        <button class="btn btn-primary">사전등록하기</button>
+        <div class="note">입력하신 정보는 오픈 안내 용도로만 사용됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:12px"><div class="brand-mark">P</div><span>펜타캠퍼스</span></div>
+        <p style="max-width:320px">가르치는 사람의 문해력.<br/>그리고 취업으로 이어지는 길.</p>
+      </div>
+      <div>
+        <h5>과정</h5>
+        <a>6과정 보기</a>
+        <a>마스터 번들</a>
+        <a>강사진</a>
+      </div>
+      <div>
+        <h5>안내</h5>
+        <a>연수원 소개</a>
+        <a>이용안내</a>
+        <a>FAQ</a>
+      </div>
+      <div>
+        <h5>연락</h5>
+        <a>단체연수 문의</a>
+        <a>강사 지원</a>
+        <a>제휴 문의</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PENTA CAMPUS · 회사명·인가번호 · 인가 완료 후 표기</span>
+      <span>campus.openpenta.com</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
