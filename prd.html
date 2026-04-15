@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>펜타캠퍼스 사이트 PRD v1.0 · 펜타랩</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root{
+    --gold:#C9A84C; --gold-dark:#a88a36; --gold-soft:#f5efe0;
+    --black:#0a0a0a; --ink:#1a1a1a; --mid:#6b6b6b;
+    --line:#e8e8e8; --line-soft:#f2f2ee;
+    --bg:#ffffff; --bg-soft:#fafaf7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    color:var(--ink); background:var(--bg-soft);
+    -webkit-font-smoothing:antialiased; line-height:1.65;
+  }
+  .sheet{
+    max-width:920px; margin:40px auto; background:var(--bg);
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    box-shadow:0 2px 20px rgba(0,0,0,0.04);
+  }
+  .head{
+    padding:48px 56px 36px; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fff 0%,var(--bg-soft) 100%);
+    position:relative;
+  }
+  .head .bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);}
+  .logo-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-0.3px;}
+  .logo span{color:var(--gold);}
+  .doc-type{font-size:11px;letter-spacing:2px;color:var(--gold-dark);font-weight:700;text-transform:uppercase;}
+  .head h1{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1.2;margin-bottom:10px;}
+  .head .sub{color:var(--mid);font-size:15px;max-width:680px;}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:32px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .meta .cell{padding:14px 18px;border-right:1px solid var(--line);background:#fff;}
+  .meta .cell:last-child{border-right:none;}
+  .meta .k{font-size:10px;color:var(--mid);letter-spacing:1.5px;font-weight:600;text-transform:uppercase;margin-bottom:4px;}
+  .meta .v{font-size:13px;font-weight:600;color:var(--ink);}
+
+  section{padding:40px 56px;border-bottom:1px solid var(--line-soft);}
+  section:last-of-type{border-bottom:none;}
+  section h2{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;}
+  section h2 .num{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--black);padding:3px 10px;border-radius:999px;letter-spacing:1px;margin-right:10px;vertical-align:middle;}
+  section .lead{color:var(--mid);font-size:14px;margin-bottom:20px;}
+
+  .one-line{
+    background:var(--gold-soft); border-left:3px solid var(--gold);
+    padding:18px 22px; border-radius:6px; margin-top:14px;
+    font-size:16px; font-weight:600; color:var(--black); line-height:1.55;
+  }
+
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13.5px;}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;}
+  th{background:var(--bg-soft);font-weight:700;font-size:12px;color:var(--mid);letter-spacing:0.5px;}
+  td.num,th.num{text-align:center;width:40px;color:var(--gold-dark);font-weight:700;}
+  td.price,th.price{text-align:right;font-weight:600;}
+  tr.highlight td{background:var(--gold-soft);font-weight:600;}
+  tr.bundle td{background:#fafaf7;border-top:2px solid var(--gold);font-weight:700;}
+
+  ul.clean{list-style:none;padding:0;}
+  ul.clean li{padding:8px 0 8px 22px;position:relative;font-size:14px;border-bottom:1px solid var(--line-soft);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:'';position:absolute;left:6px;top:18px;width:6px;height:6px;background:var(--gold);border-radius:50%;}
+  ul.x li::before{background:#cf222e;}
+  ul.check li::before{content:'✓';background:none;color:var(--gold);width:auto;height:auto;font-weight:800;top:8px;left:0;}
+
+  .quote{
+    background:#fff; border:1px solid var(--line); border-left:3px solid var(--gold);
+    padding:14px 18px; border-radius:6px; margin:10px 0;
+    font-size:14px; color:var(--ink); line-height:1.6;
+  }
+  .quote .src{display:block;margin-top:6px;font-size:11px;color:var(--mid);font-weight:600;letter-spacing:0.5px;}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;}
+  .pcard .rank{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--black);padding:2px 8px;border-radius:999px;letter-spacing:1px;margin-bottom:8px;}
+  .pcard h3{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .pcard .desc{font-size:12.5px;color:var(--mid);line-height:1.5;}
+
+  .blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:14px;}
+  .block-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+  .block-card .num{font-size:11px;color:var(--gold-dark);font-weight:700;letter-spacing:1px;margin-bottom:4px;}
+  .block-card h3{font-size:14.5px;font-weight:700;margin-bottom:6px;}
+  .block-card p{font-size:12.5px;color:var(--ink);line-height:1.5;}
+
+  .checklist{margin-top:12px;}
+  .checklist label{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:14px;cursor:pointer;}
+  .checklist label:last-child{border-bottom:none;}
+  .checklist input{margin-top:4px;accent-color:var(--gold);}
+
+  .footer-actions{padding:32px 56px;background:var(--bg-soft);text-align:center;border-top:1px solid var(--line);}
+  .footer-actions a{display:inline-block;margin:0 6px;padding:10px 22px;background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--black);font-size:13px;font-weight:600;text-decoration:none;}
+  .footer-actions a.primary{background:var(--gold);color:#fff;border-color:var(--gold);}
+
+  @media(max-width:640px){
+    .head,section,.footer-actions{padding-left:24px;padding-right:24px;}
+    .meta{grid-template-columns:repeat(2,1fr);}
+    .meta .cell:nth-child(2n){border-right:none;}
+    .grid-3{grid-template-columns:1fr;}
+    .head h1{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="head">
+    <div class="bar"></div>
+    <div class="logo-row">
+      <div class="logo">PENTA<span>LAB</span></div>
+      <div class="doc-type">PRD · v1.0</div>
+    </div>
+    <h1>펜타캠퍼스 사이트 기획서</h1>
+    <p class="sub">
+      이은경 대표님 Discovery 답변(2026-04-15)을 바탕으로 작성한 사이트 정의·범위·구조·일정 문서입니다.
+      4월말 와꾸 완성본 + 10월 정식 오픈 2단계 전략입니다.
+    </p>
+    <div class="meta">
+      <div class="cell"><div class="k">발주처</div><div class="v">펜타캠퍼스</div></div>
+      <div class="cell"><div class="k">수주처</div><div class="v">펜타랩</div></div>
+      <div class="cell"><div class="k">목표일</div><div class="v">2026-04-30 (와꾸)</div></div>
+      <div class="cell"><div class="k">정식 오픈</div><div class="v">2026-10</div></div>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="num">1</span>한 줄 정의</h2>
+    <div class="one-line">
+      가르치는 사람의 문해력. 그리고 취업으로 이어지는 길.<br/>
+      <span style="font-size:13px;color:var(--mid);font-weight:500;display:block;margin-top:8px;">
+        펜타캠퍼스는 6개 자격증 과정으로 강사·원장·예비강사를 키우고, 펜타스쿨·가맹·학교 단체연수로 연결하는 부설 평생교육원의 공식 사이트입니다.
+      </span>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>왜 만드는가</h2>
+    <p class="lead">이은경 대표 답변 직역 — 사이트는 아래 3개를 시각·구조적으로 증명하는 도구.</p>
+    <div class="quote">
+      "펜타스쿨 교사 양성. 여성들의 사회진출을 돕고 싶다는 개인적인 비전을 실현하는 수단."
+      <span class="src">— 1-1 답변</span>
+    </div>
+    <div class="quote">
+      "강의 너무 좋아요, 보다는 <b>취업됐어요!</b> 가 베스트. 사립학교, 공립학교에서 단체연수를 의뢰하는 고품질의 연수과정 누적."
+      <span class="src">— 1-2 답변</span>
+    </div>
+    <p style="margin-top:14px;font-size:13.5px;color:var(--mid);">
+      → 매출 자체는 부차적. <b>"취업 누적 + 단체연수 진입"</b> 두 축이 사이트 전 구간의 카피·구조 기준이 됩니다.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>누구를 위한 사이트인가</h2>
+    <p class="lead">1순위 페르소나가 메인 카피·CTA의 기준입니다. B2B(학교)는 1년차에 푸터 문의 채널만 운영.</p>
+    <div class="grid-3">
+      <div class="pcard">
+        <span class="rank">1순위</span>
+        <h3>현직 국어논술 강사·원장</h3>
+        <div class="desc">소규모 공부방 포함. 표준화·자동화 부재로 시간 소모 큼. 표준 커리·자격증·동료망을 원함.</div>
+      </div>
+      <div class="pcard">
+        <span class="rank">2순위</span>
+        <h3>재취업 준비 엄마</h3>
+        <div class="desc">영어·수학 안 되지만 국어는 가르쳐보고 싶음. "나도 강사 될 수 있다"는 신뢰가 핵심.</div>
+      </div>
+      <div class="pcard">
+        <span class="rank">3순위</span>
+        <h3>사립·공립학교 담당자</h3>
+        <div class="desc">단체연수 발주 검토. 1년차에는 푸터 문의로만, 2년차에 페이지 분리.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>핵심 제품 — 6과정 + 마스터 번들</h2>
+    <p class="lead">"5개"가 아니라 <b>6개</b>입니다. #1 종합문해력은 모든 신규 수강생의 진입로 (게이트웨이).</p>
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>과정명</th>
+          <th>분류</th>
+          <th class="price">가격 (가안)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td class="num">1</td>
+          <td>초등 종합문해력 전문가과정</td>
+          <td>기본 (게이트웨이)</td>
+          <td class="price">20만원</td>
+        </tr>
+        <tr><td class="num">2</td><td>인문독서지도 전문가과정</td><td>심화</td><td class="price">30만원~</td></tr>
+        <tr><td class="num">3</td><td>논증과추론 전문가과정</td><td>심화</td><td class="price">30만원~</td></tr>
+        <tr><td class="num">4</td><td>근거기반토론 전문가과정</td><td>심화</td><td class="price">30만원~</td></tr>
+        <tr><td class="num">5</td><td>시사분석훈련 전문가과정</td><td>심화</td><td class="price">30만원~</td></tr>
+        <tr><td class="num">6</td><td>요약구조화 전문가과정</td><td>심화</td><td class="price">30만원~</td></tr>
+        <tr class="bundle">
+          <td class="num">★</td>
+          <td>마스터 번들 (1+5)</td>
+          <td>패키지 · 마스터 자격 + 가맹 우선권</td>
+          <td class="price">120만원<br/><span style="font-size:11px;color:var(--mid);font-weight:500;">정가 170만 → 30% ↓</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px;font-size:13.5px;color:var(--mid);">
+      <b>PENTA 5영역 매핑 ❌</b> — 이은경 대표 명시: "1=기본, 2~6=심화" 구조이며 P·E·N·T·A 1:1 대응이 아닙니다. PENTA 5영역 도식은 펜타스쿨 브랜드 스토리에서만 노출하고 캠퍼스 6과정과 강제 연결하지 않습니다.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>무엇을 안 하는가</h2>
+    <p class="lead">이은경 대표 명시(쌤클래스) + Daniel 판단(범위 외).</p>
+    <ul class="clean x">
+      <li><b>쌤클래스형 콘텐츠 피드</b> — "정신 사나움" (5-2 답변)</li>
+      <li>라이브 알림·SNS 통합·체크인 등 잡탕 UI</li>
+      <li>B2C 회원권·구독제 (자격증 모델과 무관)</li>
+      <li>학교 위탁연수 견적 페이지 (1년차) — 사례 누적 후 진행</li>
+      <li>교재 별도 판매 (자격증 과정 안에 포함)</li>
+      <li>멀티브랜드 상단 네비게이션 (펜타 단일 브랜드)</li>
+      <li><b>결제 연동</b> — Phase B(7~9월)로 분리</li>
+      <li><b>Moodle SSO·수강등록 API</b> — Phase B로 분리</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>4월말 와꾸 — 페이지 9개</h2>
+    <p class="lead">"수강신청" 버튼은 모든 카드에서 <b>"오픈 예정"</b>으로 비활성. 사전등록 폼만 실제 동작.</p>
+    <table>
+      <thead>
+        <tr><th class="num">#</th><th>페이지</th><th>경로</th><th>4월말 상태</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>메인 랜딩 (7블록)</td><td><code>/</code></td><td>완성</td></tr>
+        <tr><td class="num">2</td><td>6과정 그리드</td><td><code>/courses</code></td><td>완성</td></tr>
+        <tr><td class="num">3</td><td>과정 상세 (6개)</td><td><code>/courses/[slug]</code></td><td>완성</td></tr>
+        <tr><td class="num">4</td><td>마스터 번들</td><td><code>/master</code></td><td>완성</td></tr>
+        <tr><td class="num">5</td><td>강사진</td><td><code>/instructors</code></td><td>슬롯 노출</td></tr>
+        <tr><td class="num">6</td><td>About (연수원 소개)</td><td><code>/about</code></td><td>완성</td></tr>
+        <tr><td class="num">7</td><td>이용안내</td><td><code>/guide</code></td><td>완성</td></tr>
+        <tr><td class="num">8</td><td>FAQ</td><td><code>/faq</code></td><td>완성</td></tr>
+        <tr><td class="num">9</td><td>사전등록 폼</td><td><code>/preregister</code></td><td>Sheets 연동</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>메인 랜딩 7블록</h2>
+    <div class="blocks">
+      <div class="block-card"><div class="num">BLOCK 1 · HERO</div><h3>가르치는 사람의 문해력</h3><p>"그리고 취업으로 이어지는 길." + 2026.10 카운트다운 + 사전등록 CTA</p></div>
+      <div class="block-card"><div class="num">BLOCK 2 · 차별점</div><h3>왜 펜타캠퍼스인가</h3><p>① 평생교육원 인가 ② 펜타스쿨 현장 강사 양성 ③ 취업 직결</p></div>
+      <div class="block-card"><div class="num">BLOCK 3 · 상품</div><h3>6과정 그리드</h3><p>1+5 구조 — 종합문해력 강조 + 심화 5종 동등 배치</p></div>
+      <div class="block-card"><div class="num">BLOCK 4 · 업셀</div><h3>마스터 번들</h3><p>"6과정 = 마스터 자격 + 펜타스쿨 가맹 우선권"</p></div>
+      <div class="block-card"><div class="num">BLOCK 5 · 신뢰</div><h3>강사진</h3><p>"현장에서 가르치는 사람이 가르칩니다"</p></div>
+      <div class="block-card"><div class="num">BLOCK 6 · 공감</div><h3>누가 듣는가</h3><p>3개 페르소나 인용형 카드 (강사·원장 / 재취업 엄마 / 학교)</p></div>
+      <div class="block-card"><div class="num">BLOCK 7 · 전환</div><h3>FAQ + 사전등록</h3><p>FAQ 5개 (인가·일정·수강료·취업) + 이메일 등록</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>일정 (Phase A → B → C)</h2>
+    <table>
+      <thead><tr><th>단계</th><th>시점</th><th>범위</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td><b>Phase A</b> · 와꾸</td><td>2026-04-30</td><td>9페이지 라이브 + 사전등록 + 도메인·SSL · 결제·SSO 제외</td></tr>
+        <tr><td>Phase B · 결제</td><td>2026-07~09</td><td>토스페이먼츠 + Moodle SSO + 마이페이지</td></tr>
+        <tr><td>Phase C · 정식 오픈</td><td>2026-10</td><td>6과정 콘텐츠 업로드 + 단체연수 채널 활성</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">9</span>미결 항목 (5월 초까지 답변 필요)</h2>
+    <p class="lead">아래 5건 모두 4월말 와꾸 완성에는 영향 없음 (가안·슬롯으로 진행).</p>
+    <table>
+      <thead><tr><th class="num">#</th><th>항목</th><th>가안 / 영향</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>각 과정 담당 강사 (6명)</td><td>"확정 중" 슬롯 표시</td></tr>
+        <tr><td class="num">2</td><td>각 과정 차시·학점</td><td>가안 16차시·2학점</td></tr>
+        <tr><td class="num">3</td><td>마스터 번들 정확한 가격</td><td>가안 120만 (정가 170만 → 30% ↓)</td></tr>
+        <tr><td class="num">4</td><td>단체연수 페이지 포함 여부</td><td>1년차 푸터 문의만 (Daniel 권고)</td></tr>
+        <tr><td class="num">5</td><td>회사명·인가번호 표기</td><td>인가 완료 후 푸터 등록</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="num">10</span>이은경 대표 승인 체크리스트</h2>
+    <div class="checklist">
+      <label><input type="checkbox"/> 한 줄 정의 (섹션 1) 동의</label>
+      <label><input type="checkbox"/> 6과정 + 마스터 번들 구조 (섹션 4) 동의</label>
+      <label><input type="checkbox"/> 메인 랜딩 7블록 카피 (섹션 7) 동의</label>
+      <label><input type="checkbox"/> 4월말 와꾸 = 결제 제외 + 사전등록만 (섹션 6) 동의</label>
+      <label><input type="checkbox"/> 미결 항목 5개 (섹션 9) 답변 일정 합의</label>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <a href="./">질문지</a>
+    <a href="./process.html">프로세스 가이드</a>
+    <a href="./prd.html" class="primary">PRD (현재)</a>
+  </div>
+</div>
+
+</body>
+</html>
